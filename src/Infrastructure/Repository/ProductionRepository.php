@@ -8,6 +8,17 @@ use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
 
 class ProductionRepository extends DocumentRepository
 {
+    /** @var DocumentManager */
+    protected $dm;
+
+    /**
+     * @param DocumentManager $dm
+     */
+    public function __construct(DocumentManager $dm)
+    {
+        $this->dm = $dm;
+    }
+
     public function create($production)
     {
         $this->dm->persist($production);
